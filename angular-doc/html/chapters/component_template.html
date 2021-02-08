@@ -1,0 +1,286 @@
+<html  class='dark'>
+	<head>
+		<link rel="stylesheet" href="./../assets/css/paper.css">
+	</head>
+<body style="background-color: rgb(65, 64, 62);">
+	<div class="margin">
+		<div class="row flex-edges ">
+			<button><a style="background-image: none; color: white;" href="./../index.html">&lt;- Back</a></button>
+			<h1 style="margin-left: 4rem;">Component & Template !</h1>
+			<img width="265px" src="./../assets/images/sarkozy_shadock.jpg" >
+		</div>
+	
+	<ul class="breadcrumb border">
+			<li><a href="./../index.html">Angular</a></li>
+			<li><a href="./component_template.html">Component & Template !</a></li>
+		  </ul>
+	<p>A component controls a patch of screen called a view.</p>
+	<ol>
+		<li><a href="component_template.html#Component">Component</a></li>
+			<ol>
+				<li><a href="component_template.html#Component_Metadata">Metadata</a></li>
+				<li><a href="component_template.html#Component_Class">Class</a></li>
+				<li><a href="component_template.html#Component_Lifecycle">Lifecycle</a></li>
+			</ol>
+		<li><a href="component_template.html#Template">Template</a></li>
+			<ol>
+				<li><a href="component_template.html#Data_binding">Data binding</a></li>
+				<li><a href="component_template.html#Pipes">Pipes</a></li>
+				<li><a href="component_template.html#Directives">Directives</a>
+					<ol>
+						<li><a href="component_template.html#Structural_directives">Structural directives</a></li>
+						<li><a href="component_template.html#Attribute_directives">Attribute directives</a></li>
+					</ol>
+				</li>
+			</ol>
+		</li>
+	</ol>
+
+	<div id="Component">
+			<ul class="breadcrumb border">
+				<li><a href="./../index.html">Angular</a></li>
+				<li><a href="./component_template.html">Component & Template !</a></li>
+				<li><a href="component_template.html#Component">Component</a></li>
+			</ul>
+			<p>You define a component's application logic —what it does to support the view— inside a class. The class interacts with the view through an API of properties and methods.</p>
+			<p>Angular creates, updates, and destroys components as the user moves through the application. Your app can take action at each moment in this lifecycle through optional lifecycle hooks, like ngOnInit().</p>
+			<pre>To create a component using the Angular CLI:
+	Run the ng generate component "component-name" command, where "omponent-name"
+By default, this command creates the following:
+	-A folder named after the component
+	-A component file, "component-name".component.ts
+	-A template file, "component-name".component.html
+	-A CSS file, "component-name".component.css
+	-A testing specification file, "component-name".component.spec.ts is the name of your new component.
+			</pre>
+	</div>
+	<div id="Component_Metadata">
+			<ul class="breadcrumb border">
+				<li><a href="./../index.html">Angular</a></li>
+				<li><a href="./component_template.html">Component & Template !</a></li>
+				<li><a href="component_template.html#Component">Component</a></li>
+				<li><a href="component_template.html#Component_Metadata">Metadata</a></li>
+			</ul>
+		<p>The component metadata define it context</p>
+		<div class="row flex-center">
+			<img class="no-border" src="./../assets/images/Component_Meta.PNG" alt="Component_Meta">
+		</div>
+		<p>The @Component decorator identifies the class immediately below it as a component class, and specifies its metadata. In the example code below, you can see that HeroListComponent is just a class, with no special Angular notation or syntax at all. It's not a component until you mark it as one with the @Component decorator.</p>
+		<p>The metadata for a component tells Angular where to get the major building blocks that it needs to create and present the component and its view. In particular, it associates a template with the component, either directly with inline code, or by reference. Together, the component and its template describe a view.</p>
+		<p>In addition to containing or pointing to the template, the @Component metadata configures, for example, how the component can be referenced in HTML and what services it requires.</p>
+	</div>
+	<div id="Component_Class">
+		<ul class="breadcrumb border">
+			<li><a href="./../index.html">Angular</a></li>
+			<li><a href="./component_template.html">Component & Template !</a></li>
+			<li><a href="component_template.html#Component">Component</a></li>
+			<li><a href="component_template.html#Component_Class">Class</a></li>
+		</ul>
+		<p>The class definied the application logic</p>
+		<div class="row flex-center">
+			<img class="no-border" src="./../assets/images/Component_Class.PNG" alt="Component_Class">
+		</div>
+		<p>For example, HeroListComponent has a heroes property that holds an array of heroes. Its selectHero() method sets a selectedHero property when the user clicks to choose a hero from that list. The component acquires the heroes from a service, which is a TypeScript parameter property on the constructor. The service is provided to the component through the dependency injection system.</p>
+	</div>
+	<div id="Component_Lifecycle">
+		<ul class="breadcrumb border">
+			<li><a href="./../index.html">Angular</a></li>
+			<li><a href="./component_template.html">Component & Template !</a></li>
+			<li><a href="component_template.html#Component">Component</a></li>
+			<li><a href="component_template.html#Component_Lifecycle">Lifecycle</a></li>
+		</ul>
+		<p>A component/directive instance has a lifecycle that starts when Angular instantiates the component (after constructor call) class and renders the component view along with its child views. The lifecycle continues with change detection, as Angular checks to see when data-bound properties change, and updates both the view and the component instance as needed. The lifecycle ends when Angular destroys the component instance and removes its rendered template from the DOM.</p>
+		<p>Your application can use lifecycle hook methods to tap into key events in the lifecycle of a component or directive in order to initialize new instances, initiate change detection when needed, respond to updates during change detection, and clean up before deletion of instances.</p>
+
+		<table>
+				<thead>
+				  <tr>
+					<th>Hook method	</th>
+					<th>Purpose</th>
+					<th>Timing</th>
+				  </tr>
+				</thead>
+				<tbody>
+				  <tr>
+					<td>ngOnChanges()</td>
+					<td><p>Respond when Angular sets or resets data-bound input properties. The method receives a SimpleChanges object of current and previous property values.</p>
+						<p>Note that this happens very frequently, so any operation you perform here impacts performance significantly.</p>
+					</td>
+					<td><p>Called before ngOnInit() and whenever one or more data-bound input properties change.</p>
+						<p>Note that if your component has no inputs or you use it without providing any inputs, the framework will not call ngOnChanges().</p>
+					</td>
+				  </tr>
+				  <tr>
+					<td>ngOnInit()</td>
+					<td><p>Initialize the directive or component after Angular first displays the data-bound properties and sets the directive or component's input properties.</p>
+					</td>
+					<td><p>Called once, after the first ngOnChanges().</p>
+					</td>
+				  </tr>
+				  <tr>
+					<td>ngDoCheck()</td>
+					<td><p>Detect and act upon changes that Angular can't or won't detect on its own.</p>
+					</td>
+					<td><p>Called before ngOnInit() and whenever one or more data-bound input properties change.</p>
+						<p>Called immediately after ngOnChanges() on every change detection run, and immediately after ngOnInit() on the first run.</p>
+					</td>
+				  </tr>
+				  <tr>
+					<td>ngAfterContentInit()</td>
+					<td><p>Respond after Angular projects external content into the component's view, or into the view that a directive is in.</p>
+					</td>
+					<td><p>Called once after the first ngDoCheck().</p>
+					</td>
+				  </tr>
+				  <tr>
+					<td>ngAfterContentChecked()</td>
+					<td><p>Respond after Angular checks the content projected into the directive or component.</p>
+					</td>
+					<td><p>Called after ngAfterContentInit() and every subsequent ngDoCheck().</p>
+					</td>
+				  </tr>
+				  <tr>
+					<td>ngAfterViewInit()</td>
+					<td><p>Respond after Angular initializes the component's views and child views, or the view that contains the directive.</p>
+					</td>
+					<td><p>Called once after the first ngAfterContentChecked().</p>
+					</td>
+				  </tr>
+				  <tr>
+					<td>ngAfterViewChecked()</td>
+					<td><p>Respond after Angular checks the component's views and child views, or the view that contains the directive.</p>
+					</td>
+					<td><p>Called after the ngAfterViewInit() and every subsequent ngAfterContentChecked().</p>
+					</td>
+				  </tr>
+				  <tr>
+					<td>ngAfterViewInit()</td>
+					<td><p>Cleanup just before Angular destroys the directive or component. Unsubscribe Observables and detach event handlers to avoid memory leaks.</p>
+					</td>
+					<td><p>Called immediately before Angular destroys the directive or component.</p>
+					</td>
+				  </tr>
+				</tbody>
+			  </table>
+			  <div class="row flex-center">
+			  <img class="no-border" src="./../assets/images/lifecycle.PNG" alt="lifecycle">
+				</div>
+	</div>
+	<div id="Template">
+		<ul class="breadcrumb border">
+			<li><a href="./../index.html">Angular</a></li>
+			<li><a href="./component_template.html">Component & Template !</a></li>
+			<li><a href="component_template.html#Template">Template</a></li>
+		</ul>
+		<p>You define a component's view with its companion template. A template is a form of HTML that tells Angular how to render the component.</p>
+		<p>Views are typically arranged hierarchically, allowing you to modify or show and hide entire UI sections or pages as a unit. The template immediately associated with a component defines that component's host view. The component can also define a view hierarchy, which contains embedded views, hosted by other components.</p>
+		<div class="row flex-center">
+			<img class="no-border" src="./../assets/images/Template_hierachie.PNG" alt="Template_hierachie">
+		</div>
+		<p>A template looks like regular HTML, except that it also contains Angular template syntax, which alters the HTML based on your app's logic and the state of app and DOM data. Your template can use data binding to coordinate the app and DOM data, pipes to transform data before it is displayed, and directives to apply app logic to what gets displayed.</p>
+		<div class="row flex-center">
+			<img class="no-border" src="./../assets/images/Template_syntaxe.PNG" alt="Template_syntaxe">
+		</div>
+		<p>This template uses typical HTML elements like "h2" and "p", and also includes Angular template-syntax elements, *ngFor, {{hero.name}}, (click), [hero], and "app-hero-detail". The template-syntax elements tell Angular how to render the HTML to the screen, using program logic and data.<p>
+		<ul>
+			<li>The *ngFor directive tells Angular to iterate over a list.</li>
+			<li>{{hero.name}}, (click), and [hero] bind program data to and from the DOM, responding to user input. See more about data binding below.</li>
+			<li>The "app-hero-detail" tag in the example is an element that represents a new component, HeroDetailComponent. HeroDetailComponent defines the hero-detail child view of HeroListComponent.</li>
+		</ul>
+	</div>
+	<div id="Data_binding">
+		<ul class="breadcrumb border">
+			<li><a href="./../index.html">Angular</a></li>
+			<li><a href="./component_template.html">Component & Template !</a></li>
+			<li><a href="component_template.html#Template">Template</a></li>
+			<li><a href="component_template.html#Data_binding">Data binding</a></li>
+		</ul>
+		<p>Without a framework, you would be responsible for pushing data values into the HTML controls and turning user responses into actions and value updates. Writing such push and pull logic by hand is tedious, error-prone, and a nightmare to read</p>
+		<p>Angular supports two-way data binding, a mechanism for coordinating the parts of a template with the parts of a component. Add binding markup to the template HTML to tell Angular how to connect both sides.</p>
+		<p>The following diagram shows the four forms of data binding markup. Each form has a direction: to the DOM, from the DOM, or both.</p>
+		<div class="row flex-center">
+			<img class="no-border" src="./../assets/images/data_binding.PNG" alt="Data_binding">
+		</div>
+		<p>This example from the HeroListComponent template uses three of these forms.</p>
+		<div class="row flex-center">
+			<img class="no-border" src="./../assets/images/data_binding_exemple.PNG" alt="data_binding_exemple">
+		</div>		
+		<ul>
+			<li>The {{hero.name}} interpolation displays the component's hero.name property value within the "li" element.</li>
+			<li>The [hero] property binding passes the value of selectedHero from the parent HeroListComponent to the hero property of the child HeroDetailComponent.</li>
+			<li>The (click) event binding calls the component's selectHero method when the user clicks a hero's name.</li>
+		</ul>
+		<p>Two-way data binding (used mainly in template-driven forms) combines property and event binding in a single notation. Here's an example from the HeroDetailComponent template that uses two-way data binding with the ngModel directive.</p>
+		<div class="row flex-center">
+			<img class="no-border" src="./../assets/images/data_binding_two_way.PNG" alt="data_binding_two_way">
+		</div>
+		<p>Data binding plays an important role in communication between a template and its component, and is also important for communication between parent and child components.</p>
+		<div class="row flex-center">
+			<img class="no-border" src="./../assets/images/data_binding_parent.PNG" alt="data_binding_parent">
+		</div>
+	</div>
+	<div id="Pipes">
+		<ul class="breadcrumb border">
+			<li><a href="./../index.html">Angular</a></li>
+			<li><a href="./component_template.html">Component & Template !</a></li>
+			<li><a href="component_template.html#Template">Template</a></li>
+			<li><a href="component_template.html#Pipes">Pipes</a></li>
+		</ul>
+		<p>Angular pipes let you declare display-value transformations in your template HTML. A class with the @Pipe decorator defines a function that transforms input values to output values for display in a view.</p>
+		<p>Angular defines various pipes, such as the date pipe and currency pipe. You can also define new pipes.</p>
+		<p>To specify a value transformation in an HTML template, use the pipe operator ( | ) . {{interpolated_value | pipe_name}}</p>
+		<p>You can chain pipes, sending the output of one pipe function to be transformed by another pipe function. A pipe can also take arguments that control how it performs its transformation. For example, you can pass the desired format to the date pipe.</p>
+		<div class="row flex-center">
+			<img class="no-border" src="./../assets/images/pipe.PNG" alt="pipe">
+		</div>
+	</div>
+	<div id="Directives">
+		<ul class="breadcrumb border">
+			<li><a href="./../index.html">Angular</a></li>
+			<li><a href="./component_template.html">Component & Template !</a></li>
+			<li><a href="component_template.html#Template">Template</a></li>
+			<li><a href="component_template.html#Directives">Directives</a></li>
+		</ul>
+		<div class="row flex-center">
+			<img class="no-border" src="./../assets/images/directives.PNG" alt="directive">
+		</div>
+		<p>Angular templates are dynamic. When Angular renders them, it transforms the DOM according to the instructions given by directives. A directive is a class with a @Directive() decorator.</p>
+		<p>A component is technically a directive. However, components are so distinctive and central to Angular applications that Angular defines the @Component() decorator, which extends the @Directive() decorator with template-oriented features.</p>
+		<p>In addition to components, there are two other kinds of directives: structural and attribute. Angular defines a number of directives of both kinds, and you can define your own using the @Directive() decorator.</p>
+		<p>Just as for components, the metadata for a directive associates the decorated class with a selector element that you use to insert it into HTML. In templates, directives typically appear within an element tag as attributes, either by name or as the target of an assignment or a binding.</p>
+	</div>
+	<div id="Structural_directives">
+		<ul class="breadcrumb border">
+			<li><a href="./../index.html">Angular</a></li>
+			<li><a href="./component_template.html">Component & Template !</a></li>
+			<li><a href="component_template.html#Template">Template</a></li>
+			<li><a href="component_template.html#Directives">Directives</a></li>
+			<li><a href="component_template.html#Structural_directives">Structural directives</a></li>
+		</ul>
+		<p>Structural directives alter layout by adding, removing, and replacing elements in the DOM. The example template uses two built-in structural directives to add application logic to how the view is rendered.</p>
+		<div class="row flex-center">
+			<img class="no-border" src="./../assets/images/Structural_directive.PNG" alt="Structural_directives">
+		</div>
+		<ul>
+			<li>*ngFor is an iterative; it tells Angular to stamp out one "li" per hero in the heroes list.</li>
+			<li>*ngIf is a conditional; it includes the HeroDetail component only if a selected hero exists.</li>
+		</ul>
+	</div>
+	<div id="Attribute_directives">
+		<ul class="breadcrumb border">
+			<li><a href="./../index.html">Angular</a></li>
+			<li><a href="./component_template.html">Component & Template !</a></li>
+			<li><a href="component_template.html#Template">Template</a></li>
+			<li><a href="component_template.html#Directives">Directives</a></li>
+			<li><a href="component_template.html#Attribute_directives">Attribute_directives</a></li>
+		</ul>
+		<p>Attribute directives alter the appearance or behavior of an existing element. In templates they look like regular HTML attributes, hence the name.</p>
+		<p>The ngModel directive, which implements two-way data binding, is an example of an attribute directive. ngModel modifies the behavior of an existing element (typically an input) by setting its display value property and responding to change events.</p>
+		<div class="row flex-center">
+			<img class="no-border" src="./../assets/images/Attribute_directives.PNG" alt="Attribute_directives">
+		</div>
+		<p>Angular has more pre-defined directives that either alter the layout structure (for example, ngSwitch) or modify aspects of DOM elements and components (for example, ngStyle and ngClass).</p>
+	</div>
+</div>
+</body>
+</html>
